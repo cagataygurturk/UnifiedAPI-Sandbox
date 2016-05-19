@@ -40,26 +40,24 @@ public class Wrapper
         return this.callMethod(instance, methodName, arguments);
     }
 
-    //is there really no map() for arrays? whoever is reviewing this, please, fix it:
     private Class[] getMethodArgumentsPrototype(Argument... arguments)
     {
-        List<Class> argTypes = new ArrayList<Class>();
-        for (Argument argument : arguments) {
-            argTypes.add(argument.getClassReference());
+        Class[] classArgs = new Class[arguments.length];
+        for (int index = 0; index < classArgs.length; index++) {
+            classArgs[index] = arguments[index].getClassReference();
         }
-        Class[] classArgs = new Class[argTypes.size()];
-        return argTypes.toArray(classArgs);
+
+        return classArgs;
     }
 
-    //is there really no map() for arrays? whoever is reviewing this, please, fix it:
     private Object[] getMethodArgumentsValues(Argument... arguments)
     {
-        List<Object> argValues = new ArrayList<Object>();
-        for (Argument argument : arguments) {
-            argValues.add(argument.getValue());
+        Object[] objectArgs = new Object[arguments.length];
+        for (int index = 0; index < objectArgs.length; index++) {
+            objectArgs[index] = arguments[index].getValue();
         }
-        Object[] objectArgs = new Object[argValues.size()];
-        return argValues.toArray(objectArgs);
+
+        return objectArgs;
     }
 
     private Class<?> getClassReference(String className) throws ClassNotFoundException

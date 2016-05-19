@@ -44,16 +44,10 @@ public class Loader
         }
     }
 
-    //is there really no map() for arrays? whoever is reviewing this, please, fix it:
     public File[] getLoaded()
     {
-        List<File> jarFiles = new ArrayList<File>();
-        for (File jarFile : this.loadedJars.values()) {
-            jarFiles.add(jarFile);
-        }
-
-        File[] files = new File[jarFiles.size()];
-        return jarFiles.toArray(files);
+        File[] files = new File[this.loadedJars.size()];
+        return this.loadedJars.values().toArray(files);
     }
 
     private void loadJar(File jarFile) throws Exception
