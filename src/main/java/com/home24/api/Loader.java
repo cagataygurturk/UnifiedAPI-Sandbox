@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Loader
 {
-    private HashMap<String, File> loadedJars = new HashMap<String, File>();
+    private HashMap<String, File> loadedJars = new HashMap<>();
 
     private HashMap<String, File> loaderMap;
 
@@ -44,10 +44,9 @@ public class Loader
         }
     }
 
-    public File[] getLoaded()
+    public Iterable<File> getLoaded()
     {
-        File[] files = new File[this.loadedJars.size()];
-        return this.loadedJars.values().toArray(files);
+        return Collections.unmodifiableCollection(this.loadedJars.values());
     }
 
     private void loadJar(File jarFile) throws Exception
