@@ -52,7 +52,7 @@ public class Loader
     private void loadJar(File jarFile) throws Exception
     {
         URL url = jarFile.toURI().toURL();
-        URLClassLoader classLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+        URLClassLoader classLoader = (URLClassLoader) this.getClass().getClassLoader();
         Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
         method.setAccessible(true);
         method.invoke(classLoader, url);
